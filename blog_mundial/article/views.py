@@ -1,23 +1,36 @@
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+
 from article.models import Article
-
-
 # Create your views here.
-def article_list(request):
-    articles = Article.objects.all()
 
-    context_dict = {
-        'articles': articles
-    }
+class ArticleCreateView(CreateView):
+    model = Article
+    success_url = reverse_lazy('article:article_list')
+    fields = ['name', 'country', 'article_id', 'article_content']
+    
 
-    return render(
-        request=request,
-        context=context_dict,
-        template_name="article_list.html"
-    )
+class ArticleListView(ListView):
+    model = Article
+    template_name = 'article_list.html'
+    
 
-def article_create(request):
-    return render(request, 'article_form.html')
+class ArticleDetailView(DetailView):
+    model = Article
+    template_name = 'article_detail.html'
+    
 
+class ArticleUpdateView(UpdateView):
+    model = Article
+    success_url = reverse_lazy('article:article_list')
+    fields = ['name', 'country', 'article_id', 'article_content']
+    
+    
+class ArticleDeleteView(DeleteView):
+    model = Article
+    success_url = reverse_lazy('article:article_list')
+    
+    
 
 

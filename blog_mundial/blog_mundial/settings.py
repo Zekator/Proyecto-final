@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'home',
     'article',
     'country',
+    'user',
 ]
 
 MIDDLEWARE = [

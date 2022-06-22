@@ -1,33 +1,14 @@
-{% extends "base.html" %}
+{% extends "home/main.html" %}
+{% load static %}
+{% block blog_mundial_content %}
 
-{% block titulo %} Crear nuevo artículo {% endblock %}
+<h2>Formulario para crear/editar articulo</h2>
+<hr></hr>
 
-
-{% block contenido %} 
-
-<h2>Formulario para crear nuevo artículo</h2>
-
-<div class="card">
-    <div class="card-header">
-        Crear un artículo
-    </div>
-    <div class="card-body">
-        <h4 class="card-title">Datos del artículo</h4>
-        <form enctype="multipart/form-data" method="post">
-    
-            <div class="mb-3">
-              <label for="" class="form-label">Nombre:</label>
-              
-              <input type="text"
-                class="form-control" name="" id="" aria-describedby="helpId" placeholder="Nombre">
-            
-            </div>
-        </form>
-    </div>
-    <div class="card-footer text-muted">
-    </div>
-</div>
-
-
+<form action="article_create" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class="btn btn-primary" value="Guardar articulo" />
+</form>
 
 {% endblock %}
