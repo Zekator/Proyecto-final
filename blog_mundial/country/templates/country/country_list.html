@@ -1,0 +1,24 @@
+{% extends "home/index.html" %}
+
+{% block titulo %} Lista de países {% endblock %}
+
+
+{% block blog_mundial_content %} 
+
+<h1>Países clasificados</h1>
+<p>
+ <li>
+     {% if countries %}
+        {% for country in countries %}
+        {{country.name}}
+        {% endfor %}
+     {% endif %}
+ </li>
+ <p>
+<h2>Añadir país:</h2>
+<div>
+    <a name="" id="" class="btn btn-succees" href="{% url 'country:country-add' %}" role="button">Añadir nuevo país</a>
+</div>
+
+
+{% endblock %}

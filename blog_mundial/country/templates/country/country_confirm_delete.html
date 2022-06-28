@@ -1,0 +1,16 @@
+{% extends "home/index.html" %}
+{% load static %}
+{% block blog_mundial_content %}
+
+<h2>Eliminar Pais</h2>
+<hr></hr>
+
+<p>Estás seguro de eliminar el pais: {{ country.name }}?</p>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <input class="btn2 btn-warning" type="submit" value="Si, eliminar.">
+    <a class="btn2 btn-primary" href="{% url 'profesor:country-list' %}" >Cancelar</a>
+</form>
+
+{% endblock %}

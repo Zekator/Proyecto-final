@@ -1,6 +1,8 @@
 {% extends "home/index.html" %}
 {% load static %}
+
 {% block blog_mundial_content %}
+
 
 
 {% if user.is_authenticated %}
@@ -10,34 +12,23 @@
     <img height="160px" src="{{url}}" alt="">
 </div>
 {% endif %}
-<h2>Buscador de Articulos</h2>
+
+<h2>Buscador de Artículos</h2>
 <hr>
 </hr>
 
 <form action="/search" method="GET">
     <div>
         <input type="text" name="search_param" id="article_code_or_name" placeholder="Buscar.."
-        {% if search_param %} value="{{ search_param }}" {% endif %}
-        >
+        {% if search_param %} value="{{ search_param }}" {% endif %} />   
+        
         <input type="submit" value="Buscar">
         <a style="color: blue" href="{% url 'home:main' %}"><i class="fa fa-undo"></i></a>
     </div>
 
 </form>
-
 <hr>
 </hr>
 
-
-{% if article %}
-<ul>
-    {% for article in article %}
-    <li>
-        Curso: {{article.name}}
-        -- Camada: {{article.code}}
-    </li>
-    {% endfor %}
-</ul>
-{% endif %}
 
 {% endblock %}

@@ -1,0 +1,45 @@
+{% extends "home/index.html" %}
+
+{% block titulo %} Lista de artículos {% endblock %}
+    
+
+{% block blog_mundial_content %} 
+
+<h1>Sección de artículos.</h1>
+<p>
+    Aquí podrá encontrar los artículos que ha escrito el autor.
+    {% if articles %}
+        <li>{{article.title}}</li>
+    {% else %}
+        <p>No hay artículos para mostrar.</p>
+    {% endif %}
+    
+<h2>Lista de artículos:</h2>
+{% if user.is_authenticated %} 
+<a class="card_custom" href="{% url 'article:article_form' %}">Crear nuevo Articulo</a>
+{% endif %}
+<hr></hr>
+<ul>
+    {% for article in article_list %}
+    <li>
+        {{articles}}
+        (
+            <a href="{% url 'article:article-detail' article.id %}">
+                <i class="fa fa-eye" style="color: rgb(0, 0, 255);"> </i>
+            </a>
+        {% if user.is_authenticated %} 
+        |
+        <a href="{% url 'article:article-update' article.id %}">
+            <i class="fa fa-pencil" style="color: rgb(0, 0, 190);"> </i>
+        </a>
+        |
+        <a href="{% url 'article:article-delete' article.id %}">
+            <i class="fa fa-trash" style="color: rgb(0, 0, 100);"> </i>
+        </a>
+        {% endif %}
+        )
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}

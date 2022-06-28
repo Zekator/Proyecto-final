@@ -6,7 +6,7 @@ from article.models import Article
 from user.models import Avatar
 
 
-def index(request):
+def home(request):
     avatar_ctx = get_avatar_url_ctx(request)
     context_dict = {**avatar_ctx}
     articles = Article.objects.all()
@@ -38,11 +38,12 @@ def search(request):
         query.add(Q(code__contains=search_param), Q.OR)
         articles = Article.objects.filter(query)
         context_dict.update({
-         'articles': articles,
-            'search_param': search_param,
+        'articles': articles,
+        'search_param': search_param,
         })
     return render(
         request=request,
         context=context_dict,
-        template_name="home/main.html",
+        template_name="article_list.html",
     )
+
